@@ -6,8 +6,10 @@
       <input
         type="email"
         class="form-control"
+        name="exampleInputEmail3"
         id="exampleInputEmail3"
         placeholder="Enter email"
+        [(ngModel)]="userEmail"
       />
     </div>
     <div class="form-group">
@@ -15,11 +17,13 @@
       <input
         type="password"
         class="form-control"
+        name="exampleInputPassword3"
         id="exampleInputPassword3"
         placeholder="Password"
+        [(ngModel)]="userPassword"
       />
     </div>
-    <button type="submit" class="btn btn-default">Sign in</button><br />
+    <button type="submit" class="btn btn-default" (click)="test()">Sign in</button><br />
     <div class="checkbox">
       <label> <input type="checkbox" /> Remember me </label>
     </div>

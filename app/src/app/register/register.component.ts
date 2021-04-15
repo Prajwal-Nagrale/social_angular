@@ -1,0 +1,31 @@
+import { Component, OnInit } from '@angular/core';
+import {JwtService} from '../jwt.service'
+import {Router} from '@angular/router'
+
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
+})
+export class RegisterComponent implements OnInit {
+  userName:string;
+  email:string;
+  password:string;
+
+
+
+  create(){
+    //console.log(this.userName+" User account Created");
+    this.jwt.create(this.userName,this.email,this.password).subscribe((data)=>
+    {
+      console.log(data);
+  
+    })
+  }
+
+  constructor(private jwt:JwtService,private router:Router) { }
+
+  ngOnInit(): void {
+  }
+
+}

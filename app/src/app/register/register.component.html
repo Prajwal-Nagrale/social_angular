@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Groups: DCX Social Network</title>
+  </head>
+  <body>
+    
+    <section>
+        <div class="register">
+                <div class="createAccount">
+                    <form class="userForm">
+                        <h2>Sign Up</h2> 
+                        <h6>It's free and always wil be.</h6>
+                        <p><label for="name">Name:</label></p>
+                        <p><input type="text" name="name" required="required" [(ngModel)]="userName"></p>
+                        <p><label for="email">Email:</label></p>
+                        <p><input type="email" name="email" required="required" [(ngModel)]="email"></p>
+                        <p><label for="password">Password:</label></p>
+                        <p><input type="password" name="password" required="required" [(ngModel)]="password"></p>
+                        <p><button type="submit" (click)="create(); ">Create Account</button></p>
+                    </form>
+                </div>
+        </div>
+    </section>
+  </body>
+  </html>

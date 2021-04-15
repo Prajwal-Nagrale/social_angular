@@ -14,6 +14,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { RegisterComponent } from './register/register.component'
+
 
 @NgModule({
   declarations: [
@@ -27,11 +31,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PhotosComponent,
     ProfileComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

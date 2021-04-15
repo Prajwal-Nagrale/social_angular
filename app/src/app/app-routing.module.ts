@@ -6,6 +6,7 @@ import { MemberComponent } from './member/member.component';
 import { GroupsComponent } from './groups/groups.component';
 import { PhotosComponent } from './photos/photos.component';
 import { ProfileComponent } from './profile/profile.component';
+import {RegisterComponent} from './register/register.component'
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'groups',component:GroupsComponent},
   {path:'photos',component:PhotosComponent},
   {path:'profile',component:ProfileComponent},
-  {path:'',redirectTo:'/home', pathMatch:'full'}
+  {path:'register',component:RegisterComponent},
+  {path:'',redirectTo:'/register', pathMatch:'full'}
 ];
 
 @NgModule({
