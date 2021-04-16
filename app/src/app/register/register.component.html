@@ -11,16 +11,48 @@
     <section>
         <div class="register">
                 <div class="createAccount">
-                    <form class="userForm">
+                    <form name="form" class="userForm" [formGroup]="form">
                         <h2>Sign Up</h2> 
                         <h6>It's free and always wil be.</h6>
-                        <p><label for="name">Name:</label></p>
-                        <p><input type="text" name="name" required="required" [(ngModel)]="userName"></p>
-                        <p><label for="email">Email:</label></p>
-                        <p><input type="email" name="email" required="required" [(ngModel)]="email"></p>
-                        <p><label for="password">Password:</label></p>
-                        <p><input type="password" name="password" required="required" [(ngModel)]="password"></p>
-                        <p><button type="submit" (click)="create(); ">Create Account</button></p>
+                        <table class="center">
+                          <tr>
+                            <td><label for="name">Name:</label></td>
+                            <td><input type="text" name="name"  required pattern="([^\s][a-zA-Z\s]).{1,}" class="form-control" formControlName="name" [ngClass]="{'is-invalid':
+                              form.get('name').touched && form.get('name').invalid}" [(ngModel)]="userName" /></td><br>
+                          </tr>
+                          <tr><td></td>
+                            <div *ngIf="form.get('name').touched && form.get('name').invalid"  class="invalid-feedback">
+                            <div *ngIf="form.get('name').errors.required"  >name is required</div>
+                            <div *ngIf="form.get('name').errors.pattern">Space is not allowed</div>
+                          </div></tr>
+                          <tr>
+                            <td><label for="email">Email:</label></td>
+                            <td><input type="text" name="email" class="form-control" formControlName="email" [ngClass]="{'is-invalid':
+                              form.get('email').touched && form.get('email').invalid}" [(ngModel)]="email" /></td><br>
+                          </tr>
+                          <tr>
+                            <td></td>
+                              <div *ngIf="form.get('email').touched && form.get('email').invalid"  class="invalid-feedback">
+                                <div *ngIf="form.get('email').errors.required" >Email is required</div>
+                                <div *ngIf="form.get('email').errors.email" >must be a valid email Address</div>
+                              </div>
+                            </tr>
+                            <tr>
+                              <td><label for="password">Password:</label></td>
+                              <td><input type="password" name="password"  class="form-control" formControlName="password" [ngClass]="{'is-invalid':
+                                form.get('password').touched && form.get('password').invalid}" [(ngModel)]="password" /></td><br>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <div *ngIf="form.get('password').touched && form.get('password').invalid"  class="invalid-feedback">
+                                <div *ngIf="form.get('password').errors.required">Password is required</div>
+                                <div *ngIf="form.get('password').errors.minlength">Password  must be atleast 6 characters</div>
+                                <div *ngIf="form.get('password').errors.pattern">Space is not allowed</div>
+                              </div>
+                            </tr>
+                            <tr></tr>
+                        </table>
+                        <p><button type="submit" [disabled]="!form.valid" (click)="create(); ">Create Account</button></p>
                     </form>
                 </div>
         </div>

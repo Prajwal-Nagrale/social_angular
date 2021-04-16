@@ -1,30 +1,51 @@
-<form class="form-inline">
-    <div class="form-group">
-      <label class="sr-only" for="exampleInputEmail3"
-        >Email address</label
-      >
-      <input
-        type="email"
-        class="form-control"
-        name="exampleInputEmail3"
-        id="exampleInputEmail3"
-        placeholder="Enter email"
-        [(ngModel)]="userEmail"
-      />
-    </div>
-    <div class="form-group">
-      <label class="sr-only" for="exampleInputPassword3">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        name="exampleInputPassword3"
-        id="exampleInputPassword3"
-        placeholder="Password"
-        [(ngModel)]="userPassword"
-      />
-    </div>
-    <button type="submit" class="btn btn-default" (click)="test()">Sign in</button><br />
-    <div class="checkbox">
-      <label> <input type="checkbox" /> Remember me </label>
-    </div>
+<div *ngIf="!msg">
+  <form name="form" [formGroup]="form">
+    <table>
+      <tr>
+        <td>
+          <div class="form-group">
+            <label class="sr-only" for="Email">Email address</label>
+
+            <input type="text" placeholder="Email" class="form-control" formControlName="email" [ngClass]="{'is-invalid':
+      form.get('email').touched && form.get('email').invalid}" [(ngModel)]="userEmail" />
+            <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+              <div *ngIf="form.get('email').errors.required">Email is required</div>
+              <div *ngIf="form.get('email').errors.email">must be a valid email Address</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-group" for="Password">
+            <label class="sr-only" for="Password">Password</label>
+            <input type="password" placeholder="Password" class="form-control" formControlName="password" [ngClass]="{'is-invalid':
+      form.get('password').touched && form.get('password').invalid}" [(ngModel)]="userPassword" />
+            <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
+              <div *ngIf="form.get('password').errors.required">Password is required</div>
+              <div *ngIf="form.get('password').errors.minlength">Password must be atleast 6 characters</div>
+              <div *ngIf="form.get('password').errors.pattern">Space is not allowed</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div>
+            <button type="submit" class="btn btn-default" (click)="test()" [disabled]="!form.valid">Sign in</button><br />
+          </div>
+          <div>
+            
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="checkbox">
+            <label> <input type="checkbox" /> Remember me </label>
+          </div>
+        </td>
+      </tr>
+    </table>
   </form>
+</div>
+<div *ngIf="msg">
+  <button type="submit" class="btn btn-default" (click)="signOut()">SignOut</button>
+
+</div>
