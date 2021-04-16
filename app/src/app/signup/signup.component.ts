@@ -18,11 +18,9 @@ export class SignupComponent implements OnInit {
   userPassword:string;
   msg:boolean = false;
   test(){
-    console.log(this.userEmail+"   "+this.userPassword);
     this.jwt.login(this.userEmail,this.userPassword).subscribe((data)=>
     {
       this.msg = true;
-      console.log(this.msg);
       console.log(data);
       localStorage.setItem('access-token',data.token);
       this.router.navigate(['/home']);

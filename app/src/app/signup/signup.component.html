@@ -30,9 +30,7 @@
           <div>
             <button type="submit" class="btn btn-default" (click)="test()" [disabled]="!form.valid">Sign in</button><br />
           </div>
-          <div>
-            
-          </div>
+      
         </td>
       </tr>
       <tr>
@@ -45,7 +43,7 @@
     </table>
   </form>
 </div>
-<div *ngIf="msg">
-  <button type="submit" class="btn btn-default" (click)="signOut()">SignOut</button>
+<div *ngIf="msg" class="element">
+  <a  (click)="signOut()">SignOut</a>
 
 </div>
