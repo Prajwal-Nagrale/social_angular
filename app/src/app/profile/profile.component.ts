@@ -18,12 +18,24 @@ export class ProfileComponent implements OnInit {
   profession:string;
   img:string='assets/img/user.png';
 
+
+  radioChangeHandler(event: any){
+    this.gender=event.target.value;
+  }
+
+  onFileSelected(event :any){
+    var fileName =event.target.files[0].name;
+    this.img='assets/img/'+fileName;
+  }
+
   updateProfile(){
     if(this.email){
       this.jwt.updateById(this.name,this.email,this.city,this.state,this.gender,this.profession,this.img).subscribe((data)=>{
         console.log("Done Updation "+this.name);
-        console.log(this.img);
+        
+        //console.log(this.img);
       })
+      //this.router.navigate(['/profile']);
     }
   }
 

@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class JwtService {
  email:string;
+//  setEmail(data){
+//     this.email=data;
+//  }
 
  getEmail(){
    return this.email;

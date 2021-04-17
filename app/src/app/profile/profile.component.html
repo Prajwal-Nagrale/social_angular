@@ -40,16 +40,20 @@
                     <table>
                       <tr><td><label>Gender</label></td></tr>
                       <tr>
-                    <td><input type="radio" id="Male" name="gender" value="Male"><label for="male" [(ngModel)]="gender">Male</label></td>
-                    <td><input type="radio" id="Female" name="gender" value="Female"><label for="female"[(ngModel)]="gender">Female</label></td>
-                    <td><input type="radio" id="Others" name="gender" value="Others"><label for="others"[(ngModel)]="gender">Others</label></td>
+                        <td>
+                          <div>
+                            <input type="radio" name="gender" value="Male" (change)="radioChangeHandler($event)">Male
+                            <input type="radio" name="gender" value="Female" (change)="radioChangeHandler($event)">Female
+                            <input type="radio" name="gender" value="Others" (change)="radioChangeHandler($event)">Others
+                          </div>
+                        </td>
                   </tr>
                    </table><br>
                     <label>Add Image</label>
-                    <input type="file" class="from-control"[(ngModel)]="img">
+                    <input type="file" class="from-control" (change)="onFileSelected($event)">
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary pull-right" (click)="updateProfile()">Save</button>
+                    <button type="button" class="btn btn-primary pull-right" (click)="updateProfile();modalRef.hide()">Save</button>
                     <button type="button" class="btn btn-primary pull-right" (click)="modalRef.hide()">Close</button>
                   </div>
                 </ng-template>
