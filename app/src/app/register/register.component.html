@@ -21,33 +21,33 @@
                               form.get('name').touched && form.get('name').invalid}" [(ngModel)]="userName" /></td><br>
                           </tr>
                           <tr><td></td>
-                            <div *ngIf="form.get('name').touched && form.get('name').invalid"  class="invalid-feedback">
-                            <div *ngIf="form.get('name').errors.required"  >name is required</div>
-                            <div *ngIf="form.get('name').errors.pattern">Space is not allowed</div>
+                            <div *ngIf="form.get('name').touched && form.get('name').invalid" >
+                            <div class="warn" *ngIf="form.get('name').errors.required"  >Name is required here</div>
+                            <div class="warn" *ngIf="form.get('name').errors.pattern">Space is not allowed</div>
                           </div></tr>
                           <tr>
                             <td><label for="email">Email:</label></td>
-                            <td><input type="text" name="email" class="form-control" formControlName="email" [ngClass]="{'is-invalid':
+                            <td><input type="text"  name="email" class="form-control" formControlName="email" [ngClass]="{'is-invalid':
                               form.get('email').touched && form.get('email').invalid}" [(ngModel)]="email" /></td><br>
                           </tr>
                           <tr>
                             <td></td>
-                              <div *ngIf="form.get('email').touched && form.get('email').invalid"  class="invalid-feedback">
-                                <div *ngIf="form.get('email').errors.required" >Email is required</div>
-                                <div *ngIf="form.get('email').errors.email" >must be a valid email Address</div>
+                              <div *ngIf="form.get('email').touched && form.get('email').invalid" >
+                                <div class="warn" *ngIf="form.get('email').errors.required" >Email is required</div>
+                                <div class="warn" *ngIf="form.get('email').errors.email" >Must be a valid email Address</div>
                               </div>
                             </tr>
                             <tr>
                               <td><label for="password">Password:</label></td>
-                              <td><input type="password" name="password"  class="form-control" formControlName="password" [ngClass]="{'is-invalid':
+                              <td><input type="password"  name="password"  class="form-control" formControlName="password" [ngClass]="{'is-invalid':
                                 form.get('password').touched && form.get('password').invalid}" [(ngModel)]="password" /></td><br>
                             </tr>
                             <tr>
                               <td></td>
-                              <div *ngIf="form.get('password').touched && form.get('password').invalid"  class="invalid-feedback">
-                                <div *ngIf="form.get('password').errors.required">Password is required</div>
-                                <div *ngIf="form.get('password').errors.minlength">Password  must be atleast 6 characters</div>
-                                <div *ngIf="form.get('password').errors.pattern">Space is not allowed</div>
+                              <div *ngIf="form.get('password').touched && form.get('password').invalid" >
+                                <div class="warn"*ngIf="form.get('password').errors.required">Password is required</div>
+                                <div class="warn"*ngIf="form.get('password').errors.minlength">Password  must be atleast 6 characters</div>
+                                <div class="warn"*ngIf="form.get('password').errors.pattern">Space is not allowed</div>
                               </div>
                             </tr>
                             <tr></tr>
@@ -55,7 +55,9 @@
                         <p><button type="submit" [disabled]="!form.valid" (click)="create(); ">Create Account</button></p>
                     </form>
                 </div>
+
         </div>
     </section>
   </body>
+
   </html>

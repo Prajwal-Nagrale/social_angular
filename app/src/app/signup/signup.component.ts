@@ -21,15 +21,18 @@ export class SignupComponent implements OnInit {
     this.jwt.login(this.userEmail,this.userPassword).subscribe((data)=>
     {
       this.msg = true;
-      console.log(data);
+      console.log(data.message);
       localStorage.setItem('access-token',data.token);
       this.router.navigate(['/home']);
-     
     })
+    // if(this.msg){
+    //   this.jwt.setEmail(this.userEmail);
+    // }
   }
   signOut() {
     this.jwt.logout();
     this.msg = false;
+    this.router.navigate(['/register']);
   }
 
   constructor(private jwt:JwtService,private router:Router ) { }
