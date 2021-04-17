@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
       this.message=data.status;
       console.log(data.message);
     })
-    
+    this.form.reset();
   }
 
 

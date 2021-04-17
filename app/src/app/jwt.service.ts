@@ -9,9 +9,6 @@ import { Observable } from 'rxjs';
 })
 export class JwtService {
  email:string;
-//  setEmail(data){
-//     this.email=data;
-//  }
 
  getEmail(){
    return this.email;
@@ -31,6 +28,13 @@ export class JwtService {
 
   getById(email: string):Observable<any>{
     return this.http.get<any>(`http://localhost:8081/profile/${email}`,this.httpOptions)
+  }
+
+  updateById(userName:string,email:string,city:string,
+    state:string,
+    gender:string,
+    profession:string,img:string):Observable<any>{
+    return this.http.put<any>(`http://localhost:8081/profile/${email}`,{userName,city,state,gender,profession,img},this.httpOptions)
   }
   
   logout() {

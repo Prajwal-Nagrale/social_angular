@@ -17,7 +17,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { RegisterComponent } from './register/register.component'
-
+import {ModalModule} from 'ngx-bootstrap/modal'
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -34,14 +34,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     FooterComponent,
     SidebarComponent,
-    RegisterComponent
+    RegisterComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

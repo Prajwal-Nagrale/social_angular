@@ -1,21 +1,72 @@
-<section onload="check()">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Groups: Dobble Social Network</title>
+    <!-- Bootstrap core CSS -->
+   
+    <!-- Custom styles for this template -->
+    
+  </head>
+
+  <body>
+<section>
     <div class="container">
       <div class="row">
         <div class="col-md-8">
           <div class="profile">
-            <h1 class="page-header">John Doe</h1>
+            <h1 class="page-header">{{name}}
+              <h5>
+                <button type="button" class="btn btn-primary" (click)="openModal(template)"><i class="fa fa-pencil"></i>Edit</button>
+                <ng-template #template>
+                  <div class="modal-header">
+                    <h4 class="modal-title pull-left">Profile Details</h4>
+                    <button type="button" class="close pull-right" aria-label="Close"
+                     (click)="modalRef.hide()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <label>Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="name" /><br/>
+                    <label>City</label>
+                    <input type="text" class="form-control" [(ngModel)]="city"/><br/>
+                    <label>State</label>
+                    <input type="text" class="form-control"[(ngModel)]="state"/><br/>
+                    <label>Profession</label>
+                    <input type="text" class="form-control"[(ngModel)]="profession"/><br/>
+                    <table>
+                      <tr><td><label>Gender</label></td></tr>
+                      <tr>
+                    <td><input type="radio" id="Male" name="gender" value="Male"><label for="male" [(ngModel)]="gender">Male</label></td>
+                    <td><input type="radio" id="Female" name="gender" value="Female"><label for="female"[(ngModel)]="gender">Female</label></td>
+                    <td><input type="radio" id="Others" name="gender" value="Others"><label for="others"[(ngModel)]="gender">Others</label></td>
+                  </tr>
+                   </table><br>
+                    <label>Add Image</label>
+                    <input type="file" class="from-control"[(ngModel)]="img">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary pull-right" (click)="updateProfile()">Save</button>
+                    <button type="button" class="btn btn-primary pull-right" (click)="modalRef.hide()">Close</button>
+                  </div>
+                </ng-template>
+            </h5>
+          </h1>
             <div class="row">
               <div class="col-md-4">
-                <img src="assets/img/user.png" class="img-thumbnail" />
+                <img src={{img}} class="img-thumbnail" />
               </div>
               <div class="col-md-8">
                 <ul>
                   <li><strong>Name:</strong>{{name}}</li>
                   <li><strong>Email Address: </strong>{{email}}</li>
-                  <li><strong>City: </strong>Boston</li>
-                  <li><strong>State: </strong>Massachusetts</li>
-                  <li><strong>Gender:</strong> Male</li>
-                  <li><strong>Profession: </strong>Web Developer</li>
+                  <li><strong>City: </strong>{{city}}</li>
+                  <li><strong>State: </strong>{{state}}</li>
+                  <li><strong>Gender:</strong>{{gender}}</li>
+                  <li><strong>Profession: </strong>{{profession}}</li>
                 </ul>
               </div>
             </div>
@@ -59,6 +110,9 @@
           </div>
         </div>
         <!-- col-md-8 end -->
-      </div>
     </div>
-  </section>
+    </div>
+</section>
+
+  </body>
+</html>

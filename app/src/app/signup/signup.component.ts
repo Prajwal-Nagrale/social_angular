@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit {
       console.log(data.message);
       localStorage.setItem('access-token',data.token);
       this.router.navigate(['/home']);
+      this.form.reset();
     })
     // if(this.msg){
     //   this.jwt.setEmail(this.userEmail);
