@@ -50,8 +50,13 @@ kLjuV3/XVzjRPzaslQIDAQAB
         this.errorMsg=error.error.message;
         //console.log(error.error.message)
     })
-  
+
   }
+
+  errorClear(){
+      this.errorMsg="";
+  }
+
   signOut() {
     this.jwt.logout();
     this.msg = false;

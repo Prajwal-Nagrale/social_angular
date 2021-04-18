@@ -30,8 +30,11 @@
             <label> <input type="checkbox" /> Remember me </label>
           </div>
 
-          <div class="alert alert-danger" *ngIf="errorMsg">
+          <div class="alert alert-danger alert-dismissible" *ngIf="errorMsg">
               {{errorMsg}}
+              <button type="button" class="close" data-dismiss="alert" (click)="errorClear()"  aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
           </div>
         
   </form>

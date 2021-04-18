@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {JwtService} from '../jwt.service'
 import {Router} from '@angular/router'
 import { FormGroup,FormControl, Validators } from '@angular/forms'; 
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-register',
@@ -26,14 +27,34 @@ export class RegisterComponent implements OnInit {
     //console.log(this.userName+" User account Created");
     this.jwt.create(this.userName,this.email,this.password).subscribe((data)=>
     {
-      this.successMsg=data.status;
+      this.successMsg=data.message;
       //console.log(data.message);
       this.form.reset();
+      this.errorMsg="";
+      this.successPopup();
     },(error)=>{
       this.errorMsg=error.error.message;
       //console.log(error.error.message)
+      this.successMsg="";
+      this.errorPopup();
     });
     
+  }
+
+  successPopup(){
+    Swal.fire(
+      'Success',
+      this.successMsg,
+      'success'
+    )
+  }
+
+  errorPopup(){
+    Swal.fire(
+      'Erorr',
+      this.errorMsg,
+      'error'
+    )
   }
 
 
