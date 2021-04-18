@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
   userName:string;
   email:string;
   password:string;
-  message:string;
+  successMsg:string;
+  errorMsg:string;
 
   form = new FormGroup({
 
@@ -25,10 +26,14 @@ export class RegisterComponent implements OnInit {
     //console.log(this.userName+" User account Created");
     this.jwt.create(this.userName,this.email,this.password).subscribe((data)=>
     {
-      this.message=data.status;
-      console.log(data.message);
-    })
-    this.form.reset();
+      this.successMsg=data.status;
+      //console.log(data.message);
+      this.form.reset();
+    },(error)=>{
+      this.errorMsg=error.error.message;
+      //console.log(error.error.message)
+    });
+    
   }
 
 

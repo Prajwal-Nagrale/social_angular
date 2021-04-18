@@ -28,22 +28,29 @@ kLjuV3/XVzjRPzaslQIDAQAB
 
   userEmail:string;
   userPassword:string;
+  successMsg:string;
+  errorMsg:string;
   msg:boolean = false;
+
+
   test(){
     var rsa = forge.pki.publicKeyFromPem(this.publicKey);
     var encryptedPassword = rsa.encrypt(this.userPassword);
-    console.log(this.userEmail+"   "+encryptedPassword);
+    //console.log(this.userEmail+"   "+encryptedPassword);
     this.jwt.login(this.userEmail,encryptedPassword).subscribe((data)=>
     {
       this.msg = true;
-      console.log(data.message);
+      this.successMsg=data.message;
+      //console.log(data.message);
       localStorage.setItem('access-token',data.token);
       this.router.navigate(['/home']);
       this.form.reset();
+      this.errorMsg="";
+    },(error)=>{
+        this.errorMsg=error.error.message;
+        //console.log(error.error.message)
     })
-    // if(this.msg){
-    //   this.jwt.setEmail(this.userEmail);
-    // }
+  
   }
   signOut() {
     this.jwt.logout();

@@ -29,6 +29,10 @@
           <div class="checkbox">
             <label> <input type="checkbox" /> Remember me </label>
           </div>
+
+          <div class="alert alert-danger" *ngIf="errorMsg">
+              {{errorMsg}}
+          </div>
         
   </form>
 </div>
