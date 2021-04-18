@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   gender:string;
   profession:string;
   img:string='assets/img/user.png';
+  msg:boolean=false;
 
 
   radioChangeHandler(event: any){
@@ -43,6 +44,7 @@ export class ProfileComponent implements OnInit {
   check(){
     this.email=this.jwt.getEmail();
     if(this.email){
+      this.msg=true;
       this.jwt.getById(this.email).subscribe((data)=>{
         //console.log(data.message[0]);
         this.name=data.message[0].userName;

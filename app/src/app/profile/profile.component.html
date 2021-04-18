@@ -19,7 +19,7 @@
           <div class="profile">
             <h1 class="page-header">{{name}}
               <h5>
-                <button type="button" class="btn btn-primary" (click)="openModal(template)"><i class="fa fa-pencil"></i>Edit</button>
+                <button type="button" class="btn btn-primary" *ngIf="msg" (click)="openModal(template)"><i class="fa fa-pencil"></i>Edit</button>
                 <ng-template #template>
                   <div class="modal-header">
                     <h4 class="modal-title pull-left">Profile Details</h4>
@@ -54,7 +54,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary pull-right" (click)="updateProfile();modalRef.hide()">Save</button>
-                    <button type="button" class="btn btn-primary pull-right" (click)="modalRef.hide()">Close</button>
+                    <button type="button" class="btn btn-primary pull-right" (click)="modalRef.hide();check()">Close</button>
                   </div>
                 </ng-template>
             </h5>

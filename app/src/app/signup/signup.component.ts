@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {JwtService} from '../jwt.service'
 import {Router} from '@angular/router'
 import { FormGroup,FormControl, Validators } from '@angular/forms';
+import * as forge from 'node-forge'
 
 @Component({
   selector: 'app-signup',
@@ -14,11 +15,25 @@ export class SignupComponent implements OnInit {
     password: new FormControl('', [Validators.required,Validators.minLength(6),Validators.pattern('[a-zA-Z0-9]+')])
 })
 
+    
+
+publicKey=`-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIhPFxQlQvxjkBS0WYSbt48kxX
++9vzEEDdYtsmU3dZXaJVGL71HyI1GgQhFZuK5QxAg6V5A87IEHChLWli+UqeVFFG
+9zEEe+phWbe3oZoIWWPM3r9atRkJ4mnRIwuL2gDKJqfJlFtyfXbCuaVPhX7XE3c2
+kLjuV3/XVzjRPzaslQIDAQAB
+-----END PUBLIC KEY-----`;
+
+
+
   userEmail:string;
   userPassword:string;
   msg:boolean = false;
   test(){
-    this.jwt.login(this.userEmail,this.userPassword).subscribe((data)=>
+    var rsa = forge.pki.publicKeyFromPem(this.publicKey);
+    var encryptedPassword = rsa.encrypt(this.userPassword);
+    console.log(this.userEmail+"   "+encryptedPassword);
+    this.jwt.login(this.userEmail,encryptedPassword).subscribe((data)=>
     {
       this.msg = true;
       console.log(data.message);

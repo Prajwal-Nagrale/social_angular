@@ -42,7 +42,7 @@ export class JwtService {
   
   logout() {
     this.email="";
-  localStorage.removeItem('access_token');
+  localStorage.clear();
   }
   
   public get loggedIn(): boolean {
