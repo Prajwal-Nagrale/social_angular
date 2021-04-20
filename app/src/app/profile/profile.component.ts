@@ -53,6 +53,9 @@ export class ProfileComponent implements OnInit {
         this.gender=data.message[0].gender;
         this.profession=data.message[0].profession;
         this.img=data.message[0].img;
+        if(!this.img){
+          this.img='assets/img/user.png';
+        }
       })
     }
     

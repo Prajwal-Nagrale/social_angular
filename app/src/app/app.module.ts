@@ -19,6 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { RegisterComponent } from './register/register.component'
 import {ModalModule} from 'ngx-bootstrap/modal'
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule} from 'ngx-pagination';
+
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     ModalModule.forRoot(),
   ],
   providers: [],

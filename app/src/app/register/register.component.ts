@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   password:string;
   successMsg:string;
   errorMsg:string;
+  msg:boolean=true;
 
   form = new FormGroup({
 
@@ -61,7 +62,10 @@ export class RegisterComponent implements OnInit {
   constructor(private jwt:JwtService,private router:Router) { }
 
   ngOnInit(): void {
-  
+     var em=this.jwt.getEmail()
+     if(em){
+       this.msg=false;
+     }
   }
 
 }

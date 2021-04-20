@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 import { MemberComponent } from './member.component';
 
@@ -8,7 +11,8 @@ describe('MemberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberComponent ]
+      declarations: [ MemberComponent ],
+      imports:[HttpClientModule,RouterTestingModule,ModalModule.forRoot()],
     })
     .compileComponents();
   }));

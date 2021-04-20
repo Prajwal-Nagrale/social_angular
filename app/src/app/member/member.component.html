@@ -1,96 +1,72 @@
 <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="members">
-            <h1 class="page-header">Members</h1>
-            <div class="row member-row">
-              <div class="col-md-3">
-                <img src="assets/img/user.png" alt="user" class="img-thumbnail" />
-                <div class="text-center">SomeUser01</div>
-              </div>
-              <div class="col-md-3">
-                <p>
-                  <a href="#" class="btn btn-success btn-block"
-                    ><i class="fa fa-user"></i> Add Friend
-                  </a>
-                </p>
-              </div>
-              <div class="col-md-3">
-                <p>
-                  <a href="#" class="btn btn-default btn-block"
-                    ><i class="fa fa-envelope"></i> Send Message
-                  </a>
-                </p>
-              </div>
-              <div class="col-md-3">
-                <p>
-                  <a href="#" class="btn btn-primary btn-block"
-                    ><i class="fa fa-edit"></i> View Profile
-                  </a>
-                </p>
-              </div>
-            </div>
+  <div class="container" *ngIf="msg">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="members">
+          <h1 class="page-header">Members</h1>
+          
 
-            <div class="row member-row">
+          <div class="row member-row" *ngFor="let obj of model | paginate: { itemsPerPage: 5, currentPage: pagenumber,totalItems: total }"  >
+            <div *ngIf="obj.email!=profileEmail">
               <div class="col-md-3">
-                <img src="assets/img/user.png" alt="user" class="img-thumbnail" />
-                <div class="text-center">SomeUser01</div>
+                <img src={{obj.img}} alt="user" class="img-thumbnail" />
+                <div class="text-center">{{obj.userName}}</div>
               </div>
               <div class="col-md-3">
                 <p>
-                  <a href="#" class="btn btn-success btn-block"
+                  <a (click)="addRequest(obj.email)" class="btn btn-success btn-block"
                     ><i class="fa fa-user"></i> Add Friend
                   </a>
                 </p>
               </div>
               <div class="col-md-3">
                 <p>
-                  <a href="#" class="btn btn-default btn-block"
+                  <a  class="btn btn-default btn-block"
                     ><i class="fa fa-envelope"></i> Send Message
                   </a>
                 </p>
               </div>
               <div class="col-md-3">
-                <p>
-                  <a href="#" class="btn btn-primary btn-block"
-                    ><i class="fa fa-edit"></i> View Profile
-                  </a>
-                </p>
+                <p> <a (click)="viewProfile(obj.email);openModal(template);" class="btn btn-primary btn-block"
+                  ><i class="fa fa-edit"></i> View Profile
+                </a></p>
+                <div class="profile">
+                  <h5>
+                  
+                    
+                    <ng-template #template>
+                      <div class="modal-header">
+                        <h4 class="modal-title pull-left">Profile Details</h4>
+                        <button type="button" class="close pull-right" aria-label="Close"
+                         (click)="modalRef.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p><img src={{img}} class="img-thumbnail" width="200" height="200"/></p>
+                        <p><strong>Name : </strong>{{name}}</p>
+                        <p><strong>Email : </strong>{{obj.email}}</p>
+                        <p><strong>City : </strong>{{city}}</p>
+                        <p><strong>State : </strong>{{state}}</p>
+                        <p><strong>Profession : </strong>{{profession}}</p>
+                        <p><strong>Gender :</strong>{{gender}}</p>
+                      </div>
+                      <div class="modal-footer">
+                        
+                        <button type="button" class="btn btn-primary pull-right" (click)="modalRef.hide();">Close</button>
+                      </div>
+                    </ng-template>
+                  </h5>
+                </div>
               </div>
             </div>
-
-            <div class="row member-row">
-              <div class="col-md-3">
-                <img src="assets/img/user.png" alt="user" class="img-thumbnail" />
-                <div class="text-center">SomeUser01</div>
-              </div>
-              <div class="col-md-3">
-                <p>
-                  <a href="#" class="btn btn-success btn-block"
-                    ><i class="fa fa-user"></i> Add Friend
-                  </a>
-                </p>
-              </div>
-              <div class="col-md-3">
-                <p>
-                  <a href="#" class="btn btn-default btn-block"
-                    ><i class="fa fa-envelope"></i> Send Message
-                  </a>
-                </p>
-              </div>
-              <div class="col-md-3">
-                <p>
-                  <a href="#" class="btn btn-primary btn-block"
-                    ><i class="fa fa-edit"></i> View Profile
-                  </a>
-                </p>
-              </div>
-            </div>
+           
           </div>
+          <pagination-controls (pageChange)="pagenumber = $event"></pagination-controls>
         </div>
-        <!-- col-md-8 end -->
-    
       </div>
+      <!-- col-md-8 end -->
+    
     </div>
-  </section>
+  </div>
+</section>

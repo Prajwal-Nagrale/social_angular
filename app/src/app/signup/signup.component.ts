@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {JwtService} from '../jwt.service'
 import {Router} from '@angular/router'
 import { FormGroup,FormControl, Validators } from '@angular/forms';
+import {User} from '../User'
 import * as forge from 'node-forge'
 
 @Component({
@@ -15,7 +16,7 @@ export class SignupComponent implements OnInit {
     password: new FormControl('', [Validators.required,Validators.minLength(6),Validators.pattern('[a-zA-Z0-9]+')])
 })
 
-    
+user?:User={userName:'',email:'',password:''}
 
 publicKey=`-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIhPFxQlQvxjkBS0WYSbt48kxX
@@ -39,10 +40,13 @@ kLjuV3/XVzjRPzaslQIDAQAB
     //console.log(this.userEmail+"   "+encryptedPassword);
     this.jwt.login(this.userEmail,encryptedPassword).subscribe((data)=>
     {
+      this.user.email=this.userEmail;
+      this.user.password=encryptedPassword;
       this.msg = true;
       this.successMsg=data.message;
       //console.log(data.message);
       localStorage.setItem('access-token',data.token);
+      localStorage.setItem('userData',JSON.stringify(this.user));
       this.router.navigate(['/home']);
       this.form.reset();
       this.errorMsg="";
@@ -66,6 +70,10 @@ kLjuV3/XVzjRPzaslQIDAQAB
   constructor(private jwt:JwtService,private router:Router ) { }
 
   ngOnInit(): void {
+    if(this.jwt.getEmail){
+      this.msg=true;
+    }
+    this.jwt.autoSignIn();
   }
 
 }

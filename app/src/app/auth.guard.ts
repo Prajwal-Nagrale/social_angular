@@ -6,9 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  constructor(){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    // if(this.jwt.loggedIn){
+    //   console.log('true');
+    //   return true;
+    // }else{
+    //   console.log('False');
+    //   return false;
+    // }
     return true;
   }
   

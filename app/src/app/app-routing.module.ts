@@ -7,6 +7,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { PhotosComponent } from './photos/photos.component';
 import { ProfileComponent } from './profile/profile.component';
 import {RegisterComponent} from './register/register.component'
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [

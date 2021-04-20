@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { ProfileComponent } from './profile.component';
 
@@ -8,7 +11,8 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      declarations: [ ProfileComponent ],
+      imports:[HttpClientModule,RouterTestingModule,ModalModule.forRoot()]
     })
     .compileComponents();
   }));
