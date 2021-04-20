@@ -9,7 +9,7 @@
           <div class="row member-row" *ngFor="let obj of model | paginate: { itemsPerPage: 5, currentPage: pagenumber,totalItems: total }"  >
             <div *ngIf="obj.email!=profileEmail">
               <div class="col-md-3">
-                <img src={{obj.img}} alt="user" class="img-thumbnail" />
+                <img src={{obj.img}} alt="user" class="img-thumbnail" width="200" height="200"/>
                 <div class="text-center">{{obj.userName}}</div>
               </div>
               <div class="col-md-3">

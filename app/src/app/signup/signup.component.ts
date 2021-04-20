@@ -44,7 +44,7 @@ kLjuV3/XVzjRPzaslQIDAQAB
       this.user.password=encryptedPassword;
       this.msg = true;
       this.successMsg=data.message;
-      //console.log(data.message);
+      //console.log(data.email);
       localStorage.setItem('access-token',data.token);
       localStorage.setItem('userData',JSON.stringify(this.user));
       this.router.navigate(['/home']);
@@ -70,10 +70,11 @@ kLjuV3/XVzjRPzaslQIDAQAB
   constructor(private jwt:JwtService,private router:Router ) { }
 
   ngOnInit(): void {
-    if(this.jwt.getEmail){
-      this.msg=true;
-    }
-    this.jwt.autoSignIn();
+     if(localStorage.getItem('access-token')){
+       this.msg=true;
+       this.jwt.autoSignIn();
+     }
+    
   }
 
 }

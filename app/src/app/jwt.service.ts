@@ -10,11 +10,12 @@ import {User} from './User'
 })
 export class JwtService {
 
-  user?:User={userName:'',email:'',password:''}
+ user?:User={userName:'',email:'',password:''}
  email:string;
-//  setEmail(data){
-//     this.email=data;
-//  }
+
+ setEmail(data:string){
+     this.email=data;
+ }
 
  getEmail(){
    return this.email;
@@ -32,13 +33,18 @@ export class JwtService {
   }
 
   autoSignIn(){
-    const userdata=JSON.parse(localStorage.getItem('userData'));
+     const userdata=JSON.parse(localStorage.getItem('userData'));
 
-    if(userdata){
-      this.email=userdata.email;
-      //console.log(userdata.email)
+     if(userdata){
+       this.email=userdata.email;
+     //console.log(userdata.email)
       this.login(userdata.email,userdata.password);
-    }
+     }else{
+       this.email="";
+     }
+    // const authOptions = { headers: new HttpHeaders({ 'Authorization': 'bearer '+localStorage.getItem('access_token')})};
+    // return this.http.get<any>('http://localhost:8081/user/login/auth',authOptions);
+
   }
 
   create(userName:string,email: string, password: string):Observable<any>{
