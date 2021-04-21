@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
 
   create(){
     //console.log(this.userName+" User account Created");
-    this.jwt.create(this.userName,this.email,this.password).subscribe((data)=>
+    if(this.email && this.password){
+      this.jwt.create(this.userName,this.email,this.password).subscribe((data)=>
     {
       this.successMsg=data.message;
       //console.log(data.message);
@@ -39,7 +40,18 @@ export class RegisterComponent implements OnInit {
       this.successMsg="";
       this.errorPopup();
     });
+    }else{
+      this.enterValue();
+    }
     
+  }
+
+  enterValue(){
+    Swal.fire(
+      'Erorr',
+      'Please Enter Email and password',
+      'error'
+    )
   }
 
   successPopup(){

@@ -77,7 +77,8 @@ export class JwtService {
 
   
   
-  get loggedIn(): boolean {
-  return !!localStorage.getItem('access_token') ;
+  public get loggedIn():boolean{
+   return !!localStorage.getItem('access-token');
+  
   }
 }

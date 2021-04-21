@@ -11,11 +11,11 @@ import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
-  {path:'home',component:HomeComponent},
-  {path:'member',component:MemberComponent},
-  {path:'groups',component:GroupsComponent},
-  {path:'photos',component:PhotosComponent},
-  {path:'profile',component:ProfileComponent},
+  {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
+  {path:'member',component:MemberComponent,canActivate:[AuthGuard]},
+  {path:'groups',component:GroupsComponent,canActivate:[AuthGuard]},
+  {path:'photos',component:PhotosComponent,canActivate:[AuthGuard]},
+  {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
   {path:'register',component:RegisterComponent},
   {path:'',redirectTo:'/register', pathMatch:'full'}
 ];

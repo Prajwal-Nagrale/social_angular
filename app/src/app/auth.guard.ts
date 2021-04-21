@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate,  Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(){}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // if(this.jwt.loggedIn){
-    //   console.log('true');
-    //   return true;
-    // }else{
-    //   console.log('False');
-    //   return false;
-    // }
-    return true;
+  constructor(private jwt:JwtService,private router:Router){}
+  canActivate():boolean {
+     if(this.jwt.loggedIn){
+       return true;
+     }else{
+       this.router.navigate(['/register']);
+       return false;
+     }
   }
   
 }

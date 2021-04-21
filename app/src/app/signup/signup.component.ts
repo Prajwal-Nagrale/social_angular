@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl('', [Validators.required,Validators.email]),
     password: new FormControl('', [Validators.required,Validators.minLength(6),Validators.pattern('[a-zA-Z0-9]+')])
-})
+  })
 
 user?:User={userName:'',email:'',password:''}
 
@@ -31,7 +31,7 @@ kLjuV3/XVzjRPzaslQIDAQAB
   userPassword:string;
   successMsg:string;
   errorMsg:string;
-  msg:boolean = false;
+  msg:boolean;
 
 
   test(){
@@ -42,7 +42,7 @@ kLjuV3/XVzjRPzaslQIDAQAB
     {
       this.user.email=this.userEmail;
       this.user.password=encryptedPassword;
-      this.msg = true;
+      this.msg = true; 
       this.successMsg=data.message;
       //console.log(data.email);
       localStorage.setItem('access-token',data.token);
@@ -52,7 +52,7 @@ kLjuV3/XVzjRPzaslQIDAQAB
       this.errorMsg="";
     },(error)=>{
         this.errorMsg=error.error.message;
-        //console.log(error.error.message)
+        //console.log(error)
     })
 
   }
@@ -70,8 +70,8 @@ kLjuV3/XVzjRPzaslQIDAQAB
   constructor(private jwt:JwtService,private router:Router ) { }
 
   ngOnInit(): void {
+     this.msg=this.jwt.loggedIn;
      if(localStorage.getItem('access-token')){
-       this.msg=true;
        this.jwt.autoSignIn();
      }
     

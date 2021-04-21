@@ -7,9 +7,11 @@ import { JwtService } from '../jwt.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  msg:boolean;
   
   constructor(private jwt:JwtService) { }
 
   ngOnInit(): void {
+    this.msg=this.jwt.loggedIn;
   }
 }
